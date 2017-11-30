@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'ExpenseController@index');
+
+Route::get('/budget', 'BudgetController@index');
+
+Route::get('/taxonomy', 'TaxonomyController@index');
 
 Route::get('/debug', function () {
     $debug = [
