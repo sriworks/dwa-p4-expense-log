@@ -13,7 +13,11 @@ class CreateExpensesTable extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('expense_category', 255);
+
+            $table->integer('category_id')->unsigned();
+            // Make foreign keys
+            $table->foreign('category_id')->references('id')->on('taxonomy_terms');
+
             $table->date('transaction_date');
             $table->integer('amount');
             $table->string('memo', 255)->nullable();

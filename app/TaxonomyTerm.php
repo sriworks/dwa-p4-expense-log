@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Budget extends Model
+class TaxonomyTerm extends Model
 {
-    public function category()
+    public function taxonomy()
     {
         // Define an inverse one-to-many relationship.
-        return $this->belongsTo('App\TaxonomyTerm');
+        return $this->belongsTo('App\Taxonomy');
     }
 }

@@ -1,6 +1,4 @@
-<div>
-    <canvas id="myChart" width="800" height="450"></canvas>
-</div>
+<canvas id="myChart" width="400" height="250"></canvas>
 <script>
 
     var data = {

@@ -13,9 +13,20 @@
 
 Route::get('/', 'ExpenseController@index');
 
+Route::get('/expense', 'ExpenseController@index');
+Route::get('/expense/create', 'ExpenseController@showCreateForm');
+Route::post('/expense', 'ExpenseController@create');
+Route::get('/expense/{id}/edit', 'ExpenseController@showEditForm');
+Route::put('/expense/{id}', 'ExpenseController@update');
+Route::delete('/expense/{id}', 'ExpenseController@delete');
+
 Route::get('/budget', 'BudgetController@index');
 
-Route::get('/taxonomy', 'TaxonomyController@index');
+Route::post('/budget', 'BudgetController@create');
+
+Route::DELETE('/budget/{id}', 'BudgetController@delete');
+
+Route::get('/taxonomy', 'SettingsController@index');
 
 Route::get('/debug', function () {
     $debug = [

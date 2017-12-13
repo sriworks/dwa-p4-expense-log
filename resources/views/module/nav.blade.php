@@ -4,21 +4,23 @@
     # display specific. By putting it in the view, I'm not making it
     # necessary to look in a logic file in order to edit link labels
     $nav = [
+        '' => 'Home',
         'expense' => 'Expenses',
         'budget' => 'Manage Budget',
-        'taxonomy' => 'Manage Categories & Tags'
+        'taxonomy' => 'Settings'
     ];
 @endphp
 
-<nav class="navbar navbar-default navbar-static-top">
-    <div class="container-fluid">
-
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                @foreach($nav as $link => $label)
-                    <li><a href='/{{ $link }}' class='{{ Request::is($link) ? 'active' : '' }}'>{{ $label }}</a>
-                @endforeach
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div><!--/.container-fluid -->
+<nav class="navbar justify-content-center navbar-expand-lg navbar-light bg-warning">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+        @foreach($nav as $link => $label)
+                <a href='/{{ $link }}' class='nav-item nav-link {{ Request::is($link) ? 'active' : '' }}'>{{ $label }}</a>
+        @endforeach
+    </div>
+  </div>
+    <a class="btn my-2 my-sm-0 btn-primary" href="/expense/create">Log Expense</a>
 </nav>
