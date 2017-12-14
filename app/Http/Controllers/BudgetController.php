@@ -11,9 +11,11 @@ class BudgetController extends Controller
 {
     /**
      * Public Controller Method to handle index page.
+     * Handles GET /budget.
      */
     public function index()
     {
+        // Query Budget with Category
         $budgets = Budget::with('category')->get();
 
         $categories = Taxonomy::with('taxonomy_terms')->where('api_name', '=', 'category')->get()->first();
@@ -26,6 +28,7 @@ class BudgetController extends Controller
 
     /**
      * Public Controller Method to handle create budget operation.
+     * Handles POST /budget.
      *
      * @param request - Http Request
      */
@@ -37,13 +40,12 @@ class BudgetController extends Controller
             'monthly_budgeted_amount' => 'required|numeric|min:1',
             ]);
 
+        // Redirect to budget index with validation errors.
         if ($validator->fails()) {
             return redirect('/budget')
                         ->withErrors($validator)
                         ->withInput();
         }
-
-        // $validator->errors()->add('field', 'Something is wrong with this field!');
 
         // Check for existing budget entry with same category.
         $budgetId = Budget::where('category_id', '=', $request->input('category'))->pluck('id')->first();
@@ -63,19 +65,20 @@ class BudgetController extends Controller
 
         // Redirect to budget index page.
         return redirect('/budget')->with([
-                'message' => array('message_text' => 'Budget Created Successfully', 'severity' => 'success'),
+                'message' => array('message_text' => 'Budget Created Successfully',
+                'severity' => 'success', ),
             ]);
     }
 
     /**
      * Public Controller Method to handle create budget operation.
+     * Handles DELETE /budget/{id}.
      *
      * @param request - Http Request
      */
     public function delete($id)
     {
         // Find Budget with given Id
-
         $budget = Budget::find($id);
 
         if (!$budget) {

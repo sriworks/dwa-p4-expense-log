@@ -3,6 +3,7 @@
     @if($mode == 'edit')
         {{ method_field('put') }}
     @endif
+    
     <div class="form-group">
         <label for="category">Expense Category<span class="text-danger">*</span></label>
         <?php $selected_category = $expense['category_id']; ?>

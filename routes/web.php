@@ -14,25 +14,27 @@
 // Home Routes.
 Route::get('/', 'DashboardController@index');
 
-// Below Home Routes would return json.
-Route::get('/dashboard/budget-trends', 'DashboardController@budgetTrends');
-Route::get('/dashboard/expense-trends', 'DashboardController@expenseTrends');
+// Dashboard API Routes
+Route::get('/dashboard/budget-trends', 'DashboardController@budgetTrends'); // Returns Json
+Route::get('/dashboard/expense-trends', 'DashboardController@expenseTrends'); // Returns Json
 
-Route::get('/expense', 'ExpenseController@index');
-Route::get('/expense/create', 'ExpenseController@showCreateForm');
-Route::post('/expense', 'ExpenseController@create');
-Route::get('/expense/{id}/edit', 'ExpenseController@showEditForm');
-Route::put('/expense/{id}', 'ExpenseController@update');
-Route::delete('/expense/{id}', 'ExpenseController@delete');
+// Expense related Routes
+Route::get('/expense', 'ExpenseController@index'); // Expense List Page
+Route::get('/expense/create', 'ExpenseController@showCreateForm'); // Create page for Expense
+Route::post('/expense', 'ExpenseController@create'); // Create Expense
+Route::get('/expense/{id}/edit', 'ExpenseController@showEditForm'); // Edit Page for Expense
+Route::put('/expense/{id}', 'ExpenseController@update');  // Update Expense
+Route::delete('/expense/{id}', 'ExpenseController@delete'); // Delete Expense
 
-Route::get('/budget', 'BudgetController@index');
+// Expense related Routes
+Route::get('/budget', 'BudgetController@index'); // Budget List Page
+Route::post('/budget', 'BudgetController@create'); // Create Budget
+Route::DELETE('/budget/{id}', 'BudgetController@delete'); // DELETE Budget
 
-Route::post('/budget', 'BudgetController@create');
+// Settings related Routes
+Route::get('/taxonomy', 'SettingsController@index'); // Taxonomy Page
 
-Route::DELETE('/budget/{id}', 'BudgetController@delete');
-
-Route::get('/taxonomy', 'SettingsController@index');
-
+// Just for Debug
 Route::get('/debug', function () {
     $debug = [
         'Environment' => App::environment(),

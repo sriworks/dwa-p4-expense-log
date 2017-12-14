@@ -10,11 +10,13 @@ class DashboardController extends Controller
 {
     /**
      * Public Controller Method to handle index page.
+     * Handles GET /.
      */
     public function index()
     {
         // Get Top Expenses this month
-        $expenses = Expense::with(['category', 'tags'])->whereMonth('transaction_date', '=', date('m'))
+        $expenses = Expense::with(['category', 'tags'])
+            ->whereMonth('transaction_date', '=', date('m'))
             ->whereYear('transaction_date', '=', date('Y'))
             ->orderByDesc('amount')
             ->limit(10)
@@ -25,6 +27,12 @@ class DashboardController extends Controller
         ]);
     }
 
+    /**
+     * Public Controller Method to handle budget trends. Get allocated budget
+     * categories and total expense amount for each category and return in a
+     * JSON that is friendly to chart.js front end.
+     * Handles GET /dashboard/budget-trends. Returns JSON.
+     */
     public function budgetTrends()
     {
         // Get Budget with Categories
@@ -50,7 +58,8 @@ class DashboardController extends Controller
 
         $expense_dataset = array();
         foreach ($expenses as $expense) {
-            $categoryMap[$expense->category_id]['expense_amount'] = $expense->expense_amount;
+            $categoryMap[$expense->category_id]['expense_amount'] =
+                $expense->expense_amount;
         }
 
         // Collect parallel data sets
@@ -83,6 +92,11 @@ class DashboardController extends Controller
         return response()->json($trends);
     }
 
+    /**
+     * Public Controller Method to handle expense trends. Gets list of expenses
+     * grouped by month for a current year.
+     * Handles GET /dashboard/expense-trends. Returns JSON.
+     */
     public function expenseTrends()
     {
         // Expense Trends this year.
@@ -101,13 +115,16 @@ class DashboardController extends Controller
             '12' => array('label' => 'December', 'expense_amount' => 0),
             );
 
-        $expenses = Expense::selectRaw('MONTH(transaction_date) transaction_month,sum(amount) as expense_amount')
+        $expenses =
+            Expense::selectRaw('MONTH(transaction_date) 
+            as transaction_month,sum(amount) as expense_amount')
             ->whereYear('transaction_date', '=', date('Y'))
             ->groupBy(DB::raw('MONTH(transaction_date)'))
             ->get();
 
         foreach ($expenses as $expense) {
-            $yearMap[$expense->transaction_month]['expense_amount'] = $expense->expense_amount;
+            $yearMap[$expense->transaction_month]['expense_amount']
+                = $expense->expense_amount;
         }
 
         $labels = array();

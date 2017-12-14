@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\TaxonomyTerm;
 
 class SettingsController extends Controller
 {
     /**
      * Public Controller Method to handle index page.
-     *
-     * @param request - Http Request
+     * Handles GET /taxonomy.
      */
     public function index()
     {
+        // Fetch all terms including categories and tags.
         $terms = TaxonomyTerm::with('taxonomy')->get();
 
         $categories = array();

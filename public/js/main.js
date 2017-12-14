@@ -1,9 +1,10 @@
-// Budget Related Listeners
-
+// Budget Module
 var budgetModule = (function() {
     "use strict"
 
+    // Initialize
     var _init = function() {
+
         // Add Budget Delete Model Listener. Dynamically change budget DELETE URls.
         $('#budgetDeleteConfirmModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget);
@@ -21,10 +22,11 @@ var budgetModule = (function() {
     }
 })();
 
-
+// Expense Module
 var expenseModule = (function() {
     "use strict"
 
+    // Initialize
     var _init = function() {
         $("#expense_tag_select").select2();
 
@@ -47,10 +49,12 @@ var expenseModule = (function() {
     }
 })();
 
+// Dashboard Module
 var dashboardModule = (function() {
     "use strict"
+    
+    // Initialize Budget Trends Chart
     var _initbudgetTrends = function() {
-
         var jsonData = $.ajax({
             url: '/dashboard/budget-trends',
             dataType: 'json',
@@ -66,7 +70,8 @@ var dashboardModule = (function() {
             });
         });
     }
-    
+
+    // Initialize Expense Trends Chart
     var _initExpenseTrend = function() {
         var jsonData = $.ajax({
             url: '/dashboard/expense-trends',
@@ -89,8 +94,7 @@ var dashboardModule = (function() {
     }
 })();
 
-
-
+// Load the modules on document init.
 $("document").ready(function() {
     budgetModule.init();
     expenseModule.init();
