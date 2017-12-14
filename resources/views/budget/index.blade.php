@@ -28,7 +28,7 @@
                         <td class="text-right"><b>{{$budget->monthly_budgeted_amount}}</b></td>
                         <td class="text-center">
                             <div class="btn-group" role="group">
-                                 <button class="btn btn-danger" data-toggle="modal" data-target="#budgetDeleteConfirmModal"data-category="{{ $budget->category->term }}" data-budgetid="{{$budget->id}}" >Delete</button>
+                                 <button class="btn btn-danger" data-toggle="modal" data-target="#budgetDeleteConfirmModal" data-category="{{ $budget->category->term }}" data-budgetid="{{$budget->id}}" >Delete</button>
                             </div>
                         </td>
                     </tr>
