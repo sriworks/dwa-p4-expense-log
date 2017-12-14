@@ -14,7 +14,7 @@
         @include('shared.error-field', ['fieldName' => 'category'])
     </div>
     <div class="form-group">
-        <label for="monthly_budgeted_amount">Monthly Budget Amount</label>
+        <label for="monthly_budgeted_amount">Monthly Budget Amount<span class="text-danger">*</span></label>
         <div class="input-group">
             <span class="input-group-addon">$</span>
             <input type="number" class="form-control" id="monthly_budgeted_amount" name="monthly_budgeted_amount" placeholder="Monthly Budget Amount">

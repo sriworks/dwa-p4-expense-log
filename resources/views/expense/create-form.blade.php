@@ -47,17 +47,23 @@
     <div class="checkbox">
         <label>
             <input type="checkbox" id="exclude_from_budget" name="exclude_from_budget" value="1"
-                @if(old('exclude_from_budget'))
+                @if(isset($expense['exclude_from_budget']) && $expense['exclude_from_budget'] ==1)
                     checked
                 @endif
             > Exclude from Budget?
         </label>
         @include('shared.error-field', ['fieldName' => 'exclude_from_budget'])
-    </div>    
-    
-
-    <div class="text-right">
-        <a class="btn btn-secondary" href="/expense">Cancel</a>
-        <input type="submit" class="btn btn-primary" />
     </div>
+    <div class="py-2">
+        <div class="float-right">
+            <a class="btn btn-secondary" href="/expense">Cancel</a>
+            <input type="submit" class="btn btn-primary" value="Save Expense"/>
+        </div>    
+        <div class="text-left">
+            @if($mode == 'edit')
+                <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#expenseDeleteConfirmModal" data-expenseid="{{$expense['id']}}" data-transactiondate="{{Carbon\Carbon::parse($expense['transaction_date'])->format('m/d/Y')}}" data-amount="{{$expense['amount']}}" >Delete This Expense</button>
+            @endif
+        </div>
+    </div>
+
 </form>

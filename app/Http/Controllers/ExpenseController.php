@@ -15,7 +15,9 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::with('category')->get();
+        $expenses = Expense::with(['category', 'tags'])
+            ->orderByDesc('transaction_date')
+            ->get();
 
         return view('expense.index')->with([
             'expenses' => $expenses,
@@ -166,7 +168,7 @@ class ExpenseController extends Controller
 
         // Redirect to budget index page.
         return redirect('/expense')->with([
-                'message' => array('message_text' => 'Expense Deleted Successfully', 'severity' => 'success'),
+                'message' => array('message_text' => 'Expense Deleted Successfully!', 'severity' => 'success'),
             ]);
     }
 }

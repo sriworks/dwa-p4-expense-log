@@ -11,11 +11,11 @@
             </button>
           </div>
           <div class="modal-body">
-            Are you sure to delete the expense for <span id="expense_delete_confirm_amount"></span> USD dated <span id="expense_delete_confirm_transactiondate"></span>?
+            Are you sure to delete the expense for <span id="expense_delete_confirm_amount" class="font-weight-bold font-italic"></span> USD dated <span id="expense_delete_confirm_transactiondate" class="font-weight-bold font-italic"></span>?
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary">Confirm Delete!</button>
+            <button type="submit" class="btn btn-danger">Confirm Delete!</button>
           </div>
         </div>
       </div>

@@ -11,7 +11,12 @@
 |
 */
 
-Route::get('/', 'ExpenseController@index');
+// Home Routes.
+Route::get('/', 'DashboardController@index');
+
+// Below Home Routes would return json.
+Route::get('/dashboard/budget-trends', 'DashboardController@budgetTrends');
+Route::get('/dashboard/expense-trends', 'DashboardController@expenseTrends');
 
 Route::get('/expense', 'ExpenseController@index');
 Route::get('/expense/create', 'ExpenseController@showCreateForm');

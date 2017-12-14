@@ -11,4 +11,12 @@ class TaxonomyTerm extends Model
         // Define an inverse one-to-many relationship.
         return $this->belongsTo('App\Taxonomy');
     }
+
+    /*
+    * Relationship method for tags
+    */
+    public function expenses()
+    {
+        return $this->belongsToMany('App\Expense')->withTimestamps();
+    }
 }

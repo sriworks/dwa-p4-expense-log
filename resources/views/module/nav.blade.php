@@ -18,7 +18,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
         @foreach($nav as $link => $label)
-                <a href='/{{ $link }}' class='nav-item nav-link {{ Request::is($link) ? 'active' : '' }}'>{{ $label }}</a>
+                <a href='/{{ $link }}' class='nav-item nav-link {{ Request::is(($link == ''?'/':$link)) ? 'active' : '' }}'>{{ $label }}</a>
         @endforeach
     </div>
   </div>

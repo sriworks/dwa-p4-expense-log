@@ -11,11 +11,11 @@
             </button>
           </div>
           <div class="modal-body">
-            Are you sure to delete the budget for <span id="budget_delete_confirm_category"></span>?
+            Are you sure to delete the budget for <span id="budget_delete_confirm_category" class="font-weight-bold font-italic"></span>?
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary">Confirm Delete!</button>
+            <button type="submit" class="btn btn-danger">Confirm Delete!</button>
           </div>
         </div>
       </div>
